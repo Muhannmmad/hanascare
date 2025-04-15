@@ -322,6 +322,7 @@
 
           let scrollSpeed = 1;
           let isPaused = false;
+          let pauseTimeout = null;
 
           function autoScroll() {
             if (!isPaused) {
@@ -337,25 +338,15 @@
 
           autoScroll();
 
-          // Pause on click
+          // Pause for 10 seconds on click
           container.addEventListener('click', () => {
-            isPaused = true;
-          });
-
-          // Resume after user scrolls manually
-          let userScrolled = false;
-
-          container.addEventListener('scroll', () => {
-            if (isPaused) {
-              userScrolled = true;
-            }
-            clearTimeout(container.resumeTimeout);
-            container.resumeTimeout = setTimeout(() => {
-              if (userScrolled) {
+            if (!isPaused) {
+              isPaused = true;
+              clearTimeout(pauseTimeout);
+              pauseTimeout = setTimeout(() => {
                 isPaused = false;
-                userScrolled = false;
-              }
-            }, 1000);
+              }, 10000); // 10 seconds = 10000 milliseconds
+            }
           });
         });
       </script>
