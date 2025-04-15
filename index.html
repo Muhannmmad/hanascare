@@ -69,7 +69,7 @@
 
                     <!-- LOGO TEXT HIER -->
                     <a href="index.html" class="navbar-brand" style="display: flex; align-items: center;">
-                           <i class="fa fa-h-square"></i>&nbsp;<span>ANA'S CARE</span>
+                    
                            <img src="images/appointment-image.png" alt="Hana's Care Logo" style="height: 150px; margin-left: 10px;">
                          </a>
                         
@@ -140,11 +140,14 @@
                <div class="row">
                     <div class="col-md-6 col-sm-6">
                          <div class="about-info">
-                              <h2 class="wow fadeInUp" data-wow-delay="0.6s">Willkommen im <i class="fa fa-h-square"></i>ana's Care <img src="images/appointment-image.png" alt="Hana's Care Logo" style="height: 250px; margin-left: 10px;">
+                              <h2 class="wow fadeInUp" data-wow-delay="0.6s">Willkommen im <i class="fa fa-h-square"></i>ana's Care
                               </h2>
                               <div class="wow fadeInUp" data-wow-delay="0.8s">
-                                   <p>Wir setzen auf Vertrauen,Kompetenz und individuelle Pflege.Mit mehr als 10 Jahren Erfahrung,qualifiziertem Personal und maßgeschneiderten Leistungen sorgen wir dafür,dass Sie sich sicher und gut betreut fühlen.Ihre Bedürfnisse stehen bei uns im Mittelpunkt-mit Herz und Verlässlichkeit.</p>
-                                   
+                                  <p>
+                                      Wir setzen auf Vertrauen, Kompetenz und individuelle Pflege.<br>
+                                      Mit mehr als 10 Jahren Erfahrung, qualifiziertem Personal und maßgeschneiderten Leistungen sorgen wir dafür,<br> dass Sie sich sicher und gut betreut fühlen.<br>
+                                      Ihre Bedürfnisse stehen bei uns im Mittelpunkt – mit Herz und Verlässlichkeit.
+                                  </p>
                               </div>
                               <figure class="profile wow fadeInUp" data-wow-delay="1s">
                                    
@@ -163,209 +166,210 @@
     
 
     
-       <!-- NEWS SECTION -->
-       <!DOCTYPE html>
-       <html lang="de">
-       <head>
-         <meta charset="UTF-8">
-         <meta name="viewport" content="width=device-width, initial-scale=1">
-         <title>News Scroll Section</title>
-         <style>
-           body {
-             font-family: Arial, sans-serif;
-             background-color: #f2f2f2;
-             margin: 0;
-             padding: 0;
-           }
+    <!DOCTYPE html>
+    <html lang="de">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>News Scroll Section</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #f2f2f2;
+          margin: 0;
+          padding: 0;
+        }
 
-           section#news {
-             background: #fff;
-             padding: 40px 0;
-           }
+        section#news {
+          background: #fff;
+          padding: 40px 0;
+        }
 
-           .container {
-             width: 90%;
-             margin: auto;
-           }
+        .container {
+          width: 90%;
+          margin: auto;
+        }
 
-           .section-title h2 {
-             text-align: center;
-             font-size: 32px;
-             margin-bottom: 30px;
-           }
+        .section-title h2 {
+          text-align: center;
+          font-size: 36px; /* Made bigger */
+          font-weight: bold;
+          color: #333;
+          margin-bottom: 30px;
+        }
 
-           .news-scroll-wrapper {
-             display: flex;
-             overflow-x: hidden;
-             gap: 20px;
-             padding: 20px 0;
-             cursor: pointer;
-           }
+        .news-scroll-wrapper {
+          display: flex;
+          overflow-x: hidden;
+          gap: 20px;
+          padding: 20px 0;
+          cursor: pointer;
+        }
 
-           .news-thumb {
-             min-width: 400px;
-             max-width: 400px;
-             height: 800px;
-             flex-shrink: 0;
-             background: #fff;
-             border-radius: 15px;
-             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-             overflow: hidden;
-             display: flex;
-             flex-direction: column;
-           }
+        .news-thumb {
+          min-width: 300px;
+          max-width: 300px;
+          height: 600px;
+          flex-shrink: 0;
+          background: #fff;
+          border-radius: 15px;
+          box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+        }
 
-           .news-thumb img {
-             width: 100%;
-             height: 300px;
-             object-fit: cover;
-           }
+        .news-thumb img {
+          width: 100%;
+          height: 300px;
+          object-fit: cover;
+        }
 
-           .news-info {
-             padding: 20px;
-             flex: 1;
-             display: flex;
-             flex-direction: column;
-             justify-content: center;
-           }
+        .news-info {
+          padding: 20px;
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
 
-           .news-info span {
-             font-weight: bold;
-             font-size: 18px;
-             color: #007BFF;
-             margin-bottom: 10px;
-           }
+        .news-info span {
+          font-weight: bold;
+          font-size: 22px; /* Bigger than h3 */
+          color: #007BFF;
+          margin-bottom: 10px;
+        }
 
-           .news-info h3 {
-             font-size: 20px;
-             line-height: 1.5;
-           }
-         </style>
-       </head>
-       <body>
+        .news-info h3 {
+          font-size: 16px; /* Smaller than span */
+          line-height: 1.5;
+          color: #333;
+        }
+      </style>
+    </head>
+    <body>
 
-         <!-- NEWS SECTION -->
-         <section id="news">
-           <div class="container">
-             <div class="section-title">
-               <h2>Unsere Leistungen</h2>
-             </div>
+      <!-- NEWS SECTION -->
+      <section id="news">
+        <div class="container">
+          <div class="section-title">
+            <h2>Unsere Leistungen</h2>
+          </div>
 
-             <div class="news-scroll-wrapper" id="scroll-container">
-               <!-- Cards (you can add more) -->
-               <div class="news-thumb">
-                 <img src="images/news-image1.jpg" alt="Grundpflege">
-                 <div class="news-info">
-                   <span>Grundpflege</span>
-                   <h3>Unterstützung zu Hause, um Krankenhaus oder Pflegenheimaufenthalte zu vermeiden.</h3>
-                 </div>
-               </div>
+          <div class="news-scroll-wrapper" id="scroll-container">
+            <!-- Card 1 -->
+            <div class="news-thumb">
+              <img src="images/news-image1.jpg" alt="Grundpflege">
+              <div class="news-info">
+                <span>Grundpflege</span>
+                <h3>Unterstützung zu Hause, um Krankenhaus oder Pflegenheimaufenthalte zu vermeiden.</h3>
+              </div>
+            </div>
 
-               <div class="news-thumb">
-                 <img src="images/news-image2.jpg" alt="Behandlungspflege">
-                 <div class="news-info">
-                   <span>Behandlungspflege</span>
-                   <h3>Pflegeleistungen auf Grundlage ärztlicher Verordnung: Medikamentengabe, Wundversorgung, Injektionen.</h3>
-                 </div>
-               </div>
+            <!-- Card 2 -->
+            <div class="news-thumb">
+              <img src="images/news-image2.jpg" alt="Behandlungspflege">
+              <div class="news-info">
+                <span>Behandlungspflege</span>
+                <h3>Pflegeleistungen auf Grundlage ärztlicher Verordnung: Medikamentengabe, Wundversorgung, Injektionen.</h3>
+              </div>
+            </div>
 
-               <div class="news-thumb">
-                 <img src="images/news-image3.jpg" alt="Hauswirtschaftliche Versorgung">
-                 <div class="news-info">
-                   <span>Hauswirtschaftliche Versorgung</span>
-                   <h3>Hilfe im Haushalt: Einkaufen, Kochen, Reinigen für ein gepflegtes Zuhause.</h3>
-                 </div>
-               </div>
+            <!-- Card 3 -->
+            <div class="news-thumb">
+              <img src="images/news-image3.jpg" alt="Hauswirtschaftliche Versorgung">
+              <div class="news-info">
+                <span>Hauswirtschaftliche Versorgung</span>
+                <h3>Hilfe im Haushalt: Einkaufen, Kochen, Reinigen für ein gepflegtes Zuhause.</h3>
+              </div>
+            </div>
 
-               <!-- Repeated for looping -->
-               <div class="news-thumb">
-                 <img src="images/news-image1.jpg" alt="Grundpflege">
-                 <div class="news-info">
-                   <span>Grundpflege</span>
-                   <h3>Unterstützung zu Hause, um Krankenhaus oder Pflegenheimaufenthalte zu vermeiden.</h3>
-                 </div>
-               </div>
+            <!-- Repeat for loop effect -->
+            <div class="news-thumb">
+              <img src="images/news-image1.jpg" alt="Grundpflege">
+              <div class="news-info">
+                <span>Grundpflege</span>
+                <h3>Unterstützung zu Hause, um Krankenhaus oder Pflegenheimaufenthalte zu vermeiden.</h3>
+              </div>
+            </div>
 
-               <div class="news-thumb">
-                 <img src="images/news-image2.jpg" alt="Behandlungspflege">
-                 <div class="news-info">
-                   <span>Behandlungspflege</span>
-                   <h3>Pflegeleistungen auf Grundlage ärztlicher Verordnung: Medikamentengabe, Wundversorgung, Injektionen.</h3>
-                 </div>
-               </div>
+            <div class="news-thumb">
+              <img src="images/news-image2.jpg" alt="Behandlungspflege">
+              <div class="news-info">
+                <span>Behandlungspflege</span>
+                <h3>Pflegeleistungen auf Grundlage ärztlicher Verordnung: Medikamentengabe, Wundversorgung, Injektionen.</h3>
+              </div>
+            </div>
 
-               <div class="news-thumb">
-                 <img src="images/news-image3.jpg" alt="Hauswirtschaftliche Versorgung">
-                 <div class="news-info">
-                   <span>Hauswirtschaftliche Versorgung</span>
-                   <h3>Hilfe im Haushalt: Einkaufen, Kochen, Reinigen für ein gepflegtes Zuhause.</h3>
-                 </div>
-               </div>
-             </div>
-           </div>
-         </section>
+            <div class="news-thumb">
+              <img src="images/news-image3.jpg" alt="Hauswirtschaftliche Versorgung">
+              <div class="news-info">
+                <span>Hauswirtschaftliche Versorgung</span>
+                <h3>Hilfe im Haushalt: Einkaufen, Kochen, Reinigen für ein gepflegtes Zuhause.</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-         <!-- JavaScript for scroll behavior -->
-         <script>
-           document.addEventListener("DOMContentLoaded", function () {
-             const container = document.getElementById('scroll-container');
+      <!-- JavaScript for scroll behavior -->
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const container = document.getElementById('scroll-container');
 
-             // Clone content to allow seamless loop
-             container.innerHTML += container.innerHTML;
+          // Clone content to allow seamless loop
+          container.innerHTML += container.innerHTML;
 
-             let scrollSpeed = 1;
-             let isPaused = false;
+          let scrollSpeed = 1;
+          let isPaused = false;
 
-             function autoScroll() {
-               if (!isPaused) {
-                 container.scrollLeft += scrollSpeed;
+          function autoScroll() {
+            if (!isPaused) {
+              container.scrollLeft += scrollSpeed;
 
-                 // Reset scroll for seamless loop
-                 if (container.scrollLeft >= container.scrollWidth / 2) {
-                   container.scrollLeft = 0;
-                 }
-               }
-               requestAnimationFrame(autoScroll);
-             }
+              // Reset scroll for seamless loop
+              if (container.scrollLeft >= container.scrollWidth / 2) {
+                container.scrollLeft = 0;
+              }
+            }
+            requestAnimationFrame(autoScroll);
+          }
 
-             autoScroll();
+          autoScroll();
 
-             // Pause on click
-             container.addEventListener('click', () => {
-               isPaused = true;
-             });
+          // Pause on click
+          container.addEventListener('click', () => {
+            isPaused = true;
+          });
 
-             // Resume after user scrolls manually
-             let userScrolled = false;
-             let lastScrollLeft = container.scrollLeft;
+          // Resume after user scrolls manually
+          let userScrolled = false;
 
-             container.addEventListener('scroll', () => {
-               if (isPaused) {
-                 userScrolled = true;
-               }
-               clearTimeout(container.resumeTimeout);
-               container.resumeTimeout = setTimeout(() => {
-                 if (userScrolled) {
-                   isPaused = false;
-                   userScrolled = false;
-                 }
-               }, 1000); // resume 1s after user finishes scroll
-             });
-           });
-         </script>
+          container.addEventListener('scroll', () => {
+            if (isPaused) {
+              userScrolled = true;
+            }
+            clearTimeout(container.resumeTimeout);
+            container.resumeTimeout = setTimeout(() => {
+              if (userScrolled) {
+                isPaused = false;
+                userScrolled = false;
+              }
+            }, 1000);
+          });
+        });
+      </script>
 
-       </body>
-       </html>
+    </body>
+    </html>
+
 
      <!-- TERMIN VEREINBAREN -->
      <section id="appointment" data-stellar-background-ratio="3">
          <div class="container">
              <div class="row">
 
-                 <div class="col-md-3 col-sm-3">
-                     <img src="imag/appointment-image.png" class="img-responsive" alt="" style="transform: scale(2); transform-origin: top left;">
-                 </div>
-
+                 
 
                  <div class="col-md-6 col-sm-6">
                      <!-- KONTAKTFORMULAR HIER -->
@@ -428,117 +432,66 @@
      </section>
 
      <!-- FUSSZEILE -->
-     <footer data-stellar-background-ratio="5">
-          <div class="container">
-               <div class="row">
+     <footer data-stellar-background-ratio="5" style="background: #f9f9f9; padding: 40px 0;">
+       <div class="container">
+         <div class="row text-left mb-5">
 
-                    <div class="col-md-4 col-sm-4">
-                         <div class="footer-thumb">
-                              <h4 class="wow fadeInUp" data-wow-delay="0.4s">Kontakt und Anschrift</h4>
-                              <p>Birkenbühl 7,Rottenburg am Neckar-Hailfingrn 72108</p>
+           <!-- Kontakt -->
+           <div class="col-md-3 col-sm-6 mb-4">
+             <div class="footer-thumb">
+               <h4>Kontakt und Anschrift</h4>
+               <p>Birkenbühl 7<br>Rottenburg am Neckar-Hailfingen 72108</p>
+               <p><i class="fa fa-phone"></i> 07457-953-14-11</p>
+               <p><i class="fa fa-fax"></i> 07457-958-49-91</p>
+               <p><i class="fa fa-envelope-o"></i> <a href="mailto:hanascare@hotmail.com">hanascare@hotmail.com</a></p>
+             </div>
+           </div>
 
-                              <!DOCTYPE html>
-                              <html lang="en">
-                              <head>
-                                  <meta charset="UTF-8">
-                                  <title>Contact Info</title>
-                                  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-                                  <style>
-                                      .contact-info {
-                                          font-family: Arial, sans-serif;
-                                          font-size: 16px;
-                                          line-height: 1.6;
-                                      }
-                                      .contact-info i {
-                                          margin-right: 8px;
-                                          color: #555;
-                                      }
-                                      .contact-info a {
-                                          color: #007BFF;
-                                          text-decoration: none;
-                                      }
-                                      .contact-info a:hover {
-                                          text-decoration: underline;
-                                      }
-                                  </style>
-                              </head>
-                              <body>
+           <!-- Haris -->
+           <div class="col-md-3 col-sm-6 mb-4">
+             <div class="footer-thumb">
+               <h4>Herr Haris Tresnjo</h4>
+               <p>Inhaber und Pflegedienstleitung</p>
+               <p><i class="fa fa-phone"></i> 07457-953-14-11</p>
+               <p><i class="fa fa-envelope-o"></i> <a href="mailto:harishanascare@hotmail.com">harishanascare@hotmail.com</a></p>
+             </div>
+           </div>
 
-                              <div class="contact-info">
-                                  <p><i class="fa fa-phone"></i> 07457-953-14-11</p>
-                                  <p><i class="fa fa-fax"></i> 07457-958-49-91</p>
-                                  <p><i class="fa fa-envelope-o"></i> <a href="mailto:hanascare@hotmail.com">hanascare@hotmail.com</a></p>
-                              </div>
+           <!-- Steven -->
+           <div class="col-md-3 col-sm-6 mb-4">
+             <div class="footer-thumb">
+               <h4>Herr Steven Kremser</h4>
+               <p>Stellv. Pflegedienstleitung</p>
+               <p><i class="fa fa-phone"></i> 07457-953-14-11</p>
+               <p><i class="fa fa-envelope-o"></i> <a href="mailto:stevenhanascare@hotmail.com">stevenhanascare@hotmail.com</a></p>
+             </div>
+           </div>
 
-                              </body>
-                              </html>
+           <!-- Öffnungszeiten -->
+           <div class="col-md-3 col-sm-6 mb-4">
+             <div class="footer-thumb">
+               <h4>Büro Öffnungszeiten</h4>
+               <p>Montag - Freitag<br><span>08:00 Uhr - 16:00 Uhr</span></p>
+             </div>
+           </div>
+         </div>
 
-                         </div>
-                    </div>
-
-                    <div class="col-md-2 col-sm-2">
-                         <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
-                              <img src="" class="img-responsive" alt="">
-                                   <div class="team-info">
-                                        <h3>Herr Haris Tresnjo</h3>
-                                        <p>Inhaber und Pflegedienstleitung</p>
-                                        <div class="team-contact-info">
-                                             <p><i class="fa fa-phone"></i>07457-953-14-11</p>
-                                             <p><i class="fa fa-envelope-o"></i> <a href="#">harishanascare@hotmail.com</a></p>
-                                        </div>
-                                       
-                                   </div>
-                         </div>
-                    </div>
-
-                    <div class="col-md-2 col-sm-2">
-                         <div class="team-thumb wow fadeInUp" data-wow-delay="0.4s">
-                              <img src="" class="img-responsive" alt="">
-                                   <div class="team-info">
-                                        <h3>Herr Steven Kremser</h3>
-                                        <p>Stellv. Pflegedienstleitung</p>
-                                        <div class="team-contact-info">
-                                             <p><i class="fa fa-phone"></i> 07457-953-14-11</p>
-                                             <p><i class="fa fa-envelope-o"></i> <a href="#">stevenhanascare@hotmail.com</a></p>
-                                        </div>
-                                        
-                                   </div>
-                         </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-4">
-                         <div class="footer-thumb">
-                              <div class="opening-hours">
-                                   <h4 class="wow fadeInUp" data-wow-delay="0.4s">Büro Öffnungszeiten</h4>
-                                   <p>Montag - Freitag <span>08:00 Uhr - 16:00 Uhr</span></p>
-                                   
-                              </div>
-
-
-                         </div>
-                    </div>
-
-                    <div class="col-md-12 col-sm-12 border-top">
-                         <div class="col-md-4 col-sm-6">
-                              <div class="copyright-text">
-                                 
-                                   
-                                 
-                              </div>
-                         </div>
-                         
-                         <div class="col-md-2 col-sm-2 text-align-center">
-                              <div class="angle-up-btn">
-                                  <a href="#top" class="smoothScroll wow fadeInUp" data-wow-delay="1.2s"><i class="fa fa-angle-up"></i></a>
-                              </div>
-                         </div>
-                    </div>
-                    
-               </div>
-          </div>
+         <!-- Bottom Row -->
+         <div class="row border-top pt-4">
+           <div class="col-md-10 col-sm-10"></div>
+           <div class="col-md-2 col-sm-2 text-center">
+             <br><br>
+             <div class="angle-up-btn">
+               <a href="#top" class="smoothScroll wow fadeInUp" data-wow-delay="1.2s">
+                 <i class="fa fa-angle-up fa-2x"></i>
+               </a>
+             </div>
+           </div>
+         </div>
+       </div>
      </footer>
 
-     <!-- SCRIPTS -->
+     <!-- REQUIRED SCRIPTS -->
      <script src="js/jquery.js"></script>
      <script src="js/bootstrap.min.js"></script>
      <script src="js/jquery.sticky.js"></script>
@@ -547,6 +500,3 @@
      <script src="js/smoothscroll.js"></script>
      <script src="js/owl.carousel.min.js"></script>
      <script src="js/custom.js"></script>
-
-</body>
-</html>
