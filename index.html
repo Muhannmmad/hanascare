@@ -359,10 +359,16 @@ http://www.hanascare.de
        <meta name="viewport" content="width=device-width, initial-scale=1">
        <link rel="stylesheet"
              href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
        <style>
          body {
            background: #f5f5f5;
            padding: 50px 0;
+         }
+
+         .section-title h2 {
+           font-size: 22px;
+           margin-bottom: 30px;
          }
 
          .form-control {
@@ -375,31 +381,53 @@ http://www.hanascare.de
            font-weight: bold;
          }
        </style>
+
        <script>
+         // Set min date to today
          window.onload = function () {
            const today = new Date().toISOString().split('T')[0];
-           document.getElementById("date").setAttribute("min", today);
-           document.getElementById("date").addEventListener("change", updateTimeOptions);
+           const dateInput = document.getElementById("date");
+           dateInput.setAttribute("min", today);
+
+           dateInput.addEventListener("change", updateTimeOptions);
          };
 
+         // Disable past time slots if date is today
          function updateTimeOptions() {
            const selectedDate = new Date(document.getElementById("date").value);
            const now = new Date();
            const timeSelect = document.getElementById("time");
-           const options = timeSelect.querySelectorAll("option");
+           const timeOptions = timeSelect.querySelectorAll("option");
 
-           options.forEach(option => {
+           timeOptions.forEach(option => {
              if (!option.value) return;
-             const [h, m] = option.value.split(":");
+             const [hours, minutes] = option.value.split(":");
              const optionTime = new Date(selectedDate);
-             optionTime.setHours(parseInt(h));
-             optionTime.setMinutes(parseInt(m));
-             option.disabled = selectedDate.toDateString() === now.toDateString() && optionTime <= now;
+             optionTime.setHours(parseInt(hours));
+             optionTime.setMinutes(parseInt(minutes));
+             optionTime.setSeconds(0);
+
+             if (
+               selectedDate.toDateString() === now.toDateString() &&
+               optionTime <= now
+             ) {
+               option.disabled = true;
+             } else {
+               option.disabled = false;
+             }
            });
          }
 
-         function updateCC() {
-           document.getElementById("cc-field").value = document.getElementById("email").value;
+         // Show popup and delay submission
+         function showConfirmation(event) {
+           event.preventDefault();
+
+           alert("Vielen Dank für Ihre Anfrage! Wir melden uns in Kürze bei Ihnen.");
+
+           // Wait 100ms to allow alert to close before submitting
+           setTimeout(() => {
+             event.target.submit();
+           }, 100);
          }
        </script>
      </head>
@@ -408,44 +436,87 @@ http://www.hanascare.de
      <section id="appointment">
        <div class="container">
          <div class="row">
-           <div class="col-md-6 col-sm-6">
-             <form method="POST"
-                   action="https://formsubmit.co/info@hanascare.de">
 
-               <!-- Hidden fields -->
+           <div class="col-md-6 col-sm-6">
+             <form id="appointment-form"
+                   method="POST"
+                   action="https://formsubmit.co/info@hanascare.de"
+                   onsubmit="showConfirmation(event)">
+
+               <!-- Hidden Formsubmit Fields -->
                <input type="hidden" name="_subject" value="Neue Beratungsanfrage">
                <input type="hidden" name="_captcha" value="false">
                <input type="hidden" name="_template" value="table">
-               <input type="hidden" name="_next" value="thankyou.html">
                <input type="hidden" name="_cc" id="cc-field">
 
-               <h2>Vereinbaren Sie Ihr unverbindliches Beratungsgespräch</h2>
+               <div class="section-title">
+                 <h2>Wir sind für Sie da! Vereinbaren Sie Ihr unverbindliches
+                   Beratungsgespräch – wir freuen uns auf Sie.</h2>
+               </div>
 
-               <input type="text" class="form-control" name="name" placeholder="Vollständiger Name" required>
-               <input type="email" class="form-control" name="email" id="email"
-                      placeholder="Ihre E-Mail" required oninput="updateCC()">
-               <input type="date" class="form-control" name="date" id="date" required>
-               <select class="form-control" name="time" id="time" required>
-                 <option disabled selected value="">Uhrzeit wählen</option>
-                 <option value="09:00">09:00 Uhr</option>
-                 <option value="10:00">10:00 Uhr</option>
-                 <option value="11:00">11:00 Uhr</option>
-                 <option value="12:00">12:00 Uhr</option>
-                 <option value="13:00">13:00 Uhr</option>
-                 <option value="14:00">14:00 Uhr</option>
-                 <option value="15:00">15:00 Uhr</option>
-                 <option value="16:00">16:00 Uhr</option>
-               </select>
+               <div class="row">
+                 <div class="col-md-6 col-sm-6">
+                   <label for="name">Name</label>
+                   <input type="text" class="form-control" id="name" name="name"
+                          placeholder="Vollständiger Name" required>
+                 </div>
 
-               <input type="tel" class="form-control" name="phone" placeholder="Telefonnummer" required>
-               <textarea class="form-control" name="message" rows="4" placeholder="Zusätzliche Nachricht"></textarea>
+                 <div class="col-md-6 col-sm-6">
+                   <label for="email">E-Mail</label>
+                   <input type="email" class="form-control" id="email" name="email"
+                          placeholder="Ihre E-Mail" required>
+                 </div>
 
-               <button type="submit" class="form-control" id="cf-submit">Absenden</button>
+                 <div class="col-md-6 col-sm-6">
+                   <label for="date">Datum wählen</label>
+                   <input type="date" id="date" name="date" class="form-control" required>
+                 </div>
+
+                 <div class="col-md-6 col-sm-6">
+                   <label for="time">Uhrzeit wählen</label>
+                   <select name="time" id="time" class="form-control" required>
+                     <option value="" disabled selected>Bitte wählen</option>
+                     <option value="09:00">09:00 Uhr</option>
+                     <option value="10:00">10:00 Uhr</option>
+                     <option value="11:00">11:00 Uhr</option>
+                     <option value="12:00">12:00 Uhr</option>
+                     <option value="13:00">13:00 Uhr</option>
+                     <option value="14:00">14:00 Uhr</option>
+                     <option value="15:00">15:00 Uhr</option>
+                     <option value="16:00">16:00 Uhr</option>
+                   </select>
+                 </div>
+
+                 <div class="col-md-12 col-sm-12">
+                   <label for="phone">Telefonnummer</label>
+                   <input type="tel" class="form-control" id="phone" name="phone"
+                          placeholder="Telefon" required>
+
+                   <label for="message">Zusätzliche Nachricht</label>
+                   <textarea class="form-control" rows="5" id="message"
+                             name="message" placeholder="Nachricht"></textarea>
+
+                   <button type="submit" class="form-control" id="cf-submit"
+                           name="submit">Absenden
+                   </button>
+                 </div>
+               </div>
              </form>
            </div>
+
          </div>
        </div>
      </section>
+
+     <script>
+       // Automatically copy sender email into hidden CC field for confirmation
+       const emailInput = document.getElementById('email');
+       const ccField = document.getElementById('cc-field');
+
+       emailInput.addEventListener('input', () => {
+         ccField.value = emailInput.value;
+       });
+     </script>
 
      </body>
      </html>
