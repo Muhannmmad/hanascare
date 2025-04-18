@@ -354,19 +354,23 @@
          <meta charset="UTF-8">
          <title>Beratungstermin vereinbaren</title>
          <meta name="viewport" content="width=device-width, initial-scale=1">
-         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+         <link rel="stylesheet"
+               href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
          <style>
              body {
                  background: #f5f5f5;
                  padding: 50px 0;
              }
+
              .section-title h2 {
                  font-size: 22px;
                  margin-bottom: 30px;
              }
+
              .form-control {
                  margin-bottom: 15px;
              }
+
              #cf-submit {
                  background-color: #5cb85c;
                  color: white;
@@ -381,27 +385,32 @@
              <div class="row">
 
                  <div class="col-md-6 col-sm-6">
-                     <form id="appointment-form" role="form" method="POST" action="https://formsubmit.co/hanascare@hotmail.com">
+                     <form id="appointment-form" role="form" method="POST"
+                           action="https://formsubmit.co/info@hanascare.de">
 
-                         <!-- Formsubmit hidden fields -->
+                         <!-- Hidden Formsubmit Fields -->
                          <input type="hidden" name="_subject" value="Neue Beratungsanfrage">
                          <input type="hidden" name="_captcha" value="false">
-                         <input type="hidden" name="_next" value="https://hanascare.de/danke.html">
+                         <input type="hidden" name="_next"
+                                value="https://hanascare.de/danke.html">
 
                          <!-- Abschnittstitel -->
                          <div class="section-title">
-                             <h2>Wir sind für Sie da! Vereinbaren Sie Ihr unverbindliches Beratungsgespräch – wir freuen uns auf Sie.</h2>
+                             <h2>Wir sind für Sie da! Vereinbaren Sie Ihr unverbindliches
+                                 Beratungsgespräch – wir freuen uns auf Sie.</h2>
                          </div>
 
                          <div class="row">
                              <div class="col-md-6 col-sm-6">
                                  <label for="name">Name</label>
-                                 <input type="text" class="form-control" id="name" name="name" placeholder="Vollständiger Name" required>
+                                 <input type="text" class="form-control" id="name" name="name"
+                                        placeholder="Vollständiger Name" required>
                              </div>
 
                              <div class="col-md-6 col-sm-6">
                                  <label for="email">E-Mail</label>
-                                 <input type="email" class="form-control" id="email" name="email" placeholder="Ihre E-Mail" required>
+                                 <input type="email" class="form-control" id="email" name="email"
+                                        placeholder="Ihre E-Mail" required>
                              </div>
 
                              <div class="col-md-6 col-sm-6">
@@ -409,14 +418,33 @@
                                  <input type="date" name="date" class="form-control" required>
                              </div>
 
+                             <div class="col-md-6 col-sm-6">
+                                 <label for="time">Uhrzeit wählen</label>
+                                 <select name="time" class="form-control" required>
+                                     <option value="" disabled selected>Bitte wählen</option>
+                                     <option value="09:00">09:00 Uhr</option>
+                                     <option value="10:00">10:00 Uhr</option>
+                                     <option value="11:00">11:00 Uhr</option>
+                                     <option value="12:00">12:00 Uhr</option>
+                                     <option value="13:00">13:00 Uhr</option>
+                                     <option value="14:00">14:00 Uhr</option>
+                                     <option value="15:00">15:00 Uhr</option>
+                                     <option value="16:00">16:00 Uhr</option>
+                                 </select>
+                             </div>
+
                              <div class="col-md-12 col-sm-12">
                                  <label for="telephone">Telefonnummer</label>
-                                 <input type="tel" class="form-control" id="phone" name="phone" placeholder="Telefon" required>
+                                 <input type="tel" class="form-control" id="phone" name="phone"
+                                        placeholder="Telefon" required>
 
                                  <label for="message">Zusätzliche Nachricht</label>
-                                 <textarea class="form-control" rows="5" id="message" name="message" placeholder="Nachricht"></textarea>
+                                 <textarea class="form-control" rows="5" id="message"
+                                           name="message" placeholder="Nachricht"></textarea>
 
-                                 <button type="submit" class="form-control" id="cf-submit" name="submit">Absenden</button>
+                                 <button type="submit" class="form-control" id="cf-submit"
+                                         name="submit">Absenden
+                                 </button>
                              </div>
                          </div>
                      </form>
