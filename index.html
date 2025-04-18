@@ -400,14 +400,13 @@ http://www.hanascare.de
            const timeOptions = timeSelect.querySelectorAll("option");
 
            timeOptions.forEach(option => {
-             if (!option.value) return; // skip placeholder
+             if (!option.value) return;
              const [hours, minutes] = option.value.split(":");
              const optionTime = new Date(selectedDate);
              optionTime.setHours(parseInt(hours));
              optionTime.setMinutes(parseInt(minutes));
              optionTime.setSeconds(0);
 
-             // Disable time options in the past
              if (
                selectedDate.toDateString() === now.toDateString() &&
                optionTime <= now
@@ -419,11 +418,16 @@ http://www.hanascare.de
            });
          }
 
-         // Show popup and prevent redirect
+         // Show popup and delay submission
          function showConfirmation(event) {
            event.preventDefault();
+
            alert("Vielen Dank für Ihre Anfrage! Wir melden uns in Kürze bei Ihnen.");
-           event.target.submit();
+
+           // Wait 100ms to allow alert to close before submitting
+           setTimeout(() => {
+             event.target.submit();
+           }, 100);
          }
        </script>
      </head>
@@ -443,6 +447,7 @@ http://www.hanascare.de
                <input type="hidden" name="_subject" value="Neue Beratungsanfrage">
                <input type="hidden" name="_captcha" value="false">
                <input type="hidden" name="_template" value="table">
+               <input type="hidden" name="_cc" id="cc-field">
 
                <div class="section-title">
                  <h2>Wir sind für Sie da! Vereinbaren Sie Ihr unverbindliches
@@ -502,6 +507,16 @@ http://www.hanascare.de
          </div>
        </div>
      </section>
+
+     <script>
+       // Automatically copy sender email into hidden CC field for confirmation
+       const emailInput = document.getElementById('email');
+       const ccField = document.getElementById('cc-field');
+
+       emailInput.addEventListener('input', () => {
+         ccField.value = emailInput.value;
+       });
+     </script>
 
      </body>
      </html>
