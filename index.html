@@ -354,133 +354,158 @@ http://www.hanascare.de
      <!DOCTYPE html>
      <html lang="de">
      <head>
-         <meta charset="UTF-8">
-         <title>Beratungstermin vereinbaren</title>
-         <meta name="viewport" content="width=device-width, initial-scale=1">
+       <meta charset="UTF-8">
+       <title>Beratungstermin vereinbaren</title>
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+       <link rel="stylesheet"
+             href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-         <!-- Bootstrap for styling -->
-         <link rel="stylesheet"
-               href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+       <style>
+         body {
+           background: #f5f5f5;
+           padding: 50px 0;
+         }
 
-         <style>
-             body {
-                 background: #f5f5f5;
-                 padding: 50px 0;
+         .section-title h2 {
+           font-size: 22px;
+           margin-bottom: 30px;
+         }
+
+         .form-control {
+           margin-bottom: 15px;
+         }
+
+         #cf-submit {
+           background-color: #5cb85c;
+           color: white;
+           font-weight: bold;
+         }
+       </style>
+
+       <script>
+         // Set min date to today
+         window.onload = function () {
+           const today = new Date().toISOString().split('T')[0];
+           const dateInput = document.getElementById("date");
+           dateInput.setAttribute("min", today);
+
+           dateInput.addEventListener("change", updateTimeOptions);
+         };
+
+         // Disable past time slots if date is today
+         function updateTimeOptions() {
+           const selectedDate = new Date(document.getElementById("date").value);
+           const now = new Date();
+           const timeSelect = document.getElementById("time");
+           const timeOptions = timeSelect.querySelectorAll("option");
+
+           timeOptions.forEach(option => {
+             if (!option.value) return; // skip placeholder
+             const [hours, minutes] = option.value.split(":");
+             const optionTime = new Date(selectedDate);
+             optionTime.setHours(parseInt(hours));
+             optionTime.setMinutes(parseInt(minutes));
+             optionTime.setSeconds(0);
+
+             // Disable time options in the past
+             if (
+               selectedDate.toDateString() === now.toDateString() &&
+               optionTime <= now
+             ) {
+               option.disabled = true;
+             } else {
+               option.disabled = false;
              }
+           });
+         }
 
-             .section-title h2 {
-                 font-size: 22px;
-                 margin-bottom: 30px;
-             }
-
-             .form-control {
-                 margin-bottom: 15px;
-             }
-
-             #cf-submit {
-                 background-color: #5cb85c;
-                 color: white;
-                 font-weight: bold;
-             }
-         </style>
-
-         <script>
-             // Set the minimum date to today
-             window.onload = function () {
-                 const today = new Date().toISOString().split('T')[0];
-                 document.getElementById("date").setAttribute("min", today);
-             };
-
-             // Confirm submission before sending
-             function confirmSubmission(event) {
-                 const confirmed = confirm("Möchten Sie den Termin wirklich absenden?");
-                 if (!confirmed) {
-                     event.preventDefault(); // Stop form from submitting
-                 }
-             }
-         </script>
+         // Show popup and prevent redirect
+         function showConfirmation(event) {
+           event.preventDefault();
+           alert("Vielen Dank für Ihre Anfrage! Wir melden uns in Kürze bei Ihnen.");
+           event.target.submit();
+         }
+       </script>
      </head>
      <body>
 
      <section id="appointment">
-         <div class="container">
-             <div class="row">
+       <div class="container">
+         <div class="row">
 
+           <div class="col-md-6 col-sm-6">
+             <form id="appointment-form"
+                   method="POST"
+                   action="https://formsubmit.co/info@hanascare.de"
+                   onsubmit="showConfirmation(event)">
+
+               <!-- Hidden Formsubmit Fields -->
+               <input type="hidden" name="_subject" value="Neue Beratungsanfrage">
+               <input type="hidden" name="_captcha" value="false">
+               <input type="hidden" name="_template" value="table">
+
+               <div class="section-title">
+                 <h2>Wir sind für Sie da! Vereinbaren Sie Ihr unverbindliches
+                   Beratungsgespräch – wir freuen uns auf Sie.</h2>
+               </div>
+
+               <div class="row">
                  <div class="col-md-6 col-sm-6">
-                     <form id="appointment-form"
-                           role="form"
-                           method="POST"
-                           action="https://formsubmit.co/hanascare@hotmail.com"
-                           onsubmit="confirmSubmission(event)">
-
-                         <!-- Hidden Formsubmit Fields -->
-                         <input type="hidden" name="_subject" value="Neue Beratungsanfrage">
-                         <input type="hidden" name="_captcha" value="false">
-                         <input type="hidden" name="_next" value="https://hanascare.de/danke.html">
-
-                         <!-- Abschnittstitel -->
-                         <div class="section-title">
-                             <h2>Wir sind für Sie da! Vereinbaren Sie Ihr unverbindliches
-                                 Beratungsgespräch – wir freuen uns auf Sie.</h2>
-                         </div>
-
-                         <div class="row">
-                             <div class="col-md-6 col-sm-6">
-                                 <label for="name">Name</label>
-                                 <input type="text" class="form-control" id="name" name="name"
-                                        placeholder="Vollständiger Name" required>
-                             </div>
-
-                             <div class="col-md-6 col-sm-6">
-                                 <label for="email">E-Mail</label>
-                                 <input type="email" class="form-control" id="email" name="email"
-                                        placeholder="Ihre E-Mail" required>
-                             </div>
-
-                             <div class="col-md-6 col-sm-6">
-                                 <label for="date">Datum wählen</label>
-                                 <input type="date" id="date" name="date"
-                                        class="form-control" required>
-                             </div>
-
-                             <div class="col-md-6 col-sm-6">
-                                 <label for="time">Uhrzeit wählen</label>
-                                 <select name="time" class="form-control" required>
-                                     <option value="" disabled selected>Bitte wählen</option>
-                                     <option value="09:00">09:00 Uhr</option>
-                                     <option value="10:00">10:00 Uhr</option>
-                                     <option value="11:00">11:00 Uhr</option>
-                                     <option value="12:00">12:00 Uhr</option>
-                                     <option value="13:00">13:00 Uhr</option>
-                                     <option value="14:00">14:00 Uhr</option>
-                                     <option value="15:00">15:00 Uhr</option>
-                                     <option value="16:00">16:00 Uhr</option>
-                                 </select>
-                             </div>
-
-                             <div class="col-md-12 col-sm-12">
-                                 <label for="phone">Telefonnummer</label>
-                                 <input type="tel" class="form-control" id="phone" name="phone"
-                                        placeholder="Telefon" required>
-
-                                 <label for="message">Zusätzliche Nachricht</label>
-                                 <textarea class="form-control" rows="5" id="message"
-                                           name="message" placeholder="Nachricht"></textarea>
-
-                                 <button type="submit" class="form-control" id="cf-submit"
-                                         name="submit">Absenden
-                                 </button>
-                             </div>
-                         </div>
-                     </form>
+                   <label for="name">Name</label>
+                   <input type="text" class="form-control" id="name" name="name"
+                          placeholder="Vollständiger Name" required>
                  </div>
 
-             </div>
+                 <div class="col-md-6 col-sm-6">
+                   <label for="email">E-Mail</label>
+                   <input type="email" class="form-control" id="email" name="email"
+                          placeholder="Ihre E-Mail" required>
+                 </div>
+
+                 <div class="col-md-6 col-sm-6">
+                   <label for="date">Datum wählen</label>
+                   <input type="date" id="date" name="date" class="form-control" required>
+                 </div>
+
+                 <div class="col-md-6 col-sm-6">
+                   <label for="time">Uhrzeit wählen</label>
+                   <select name="time" id="time" class="form-control" required>
+                     <option value="" disabled selected>Bitte wählen</option>
+                     <option value="09:00">09:00 Uhr</option>
+                     <option value="10:00">10:00 Uhr</option>
+                     <option value="11:00">11:00 Uhr</option>
+                     <option value="12:00">12:00 Uhr</option>
+                     <option value="13:00">13:00 Uhr</option>
+                     <option value="14:00">14:00 Uhr</option>
+                     <option value="15:00">15:00 Uhr</option>
+                     <option value="16:00">16:00 Uhr</option>
+                   </select>
+                 </div>
+
+                 <div class="col-md-12 col-sm-12">
+                   <label for="phone">Telefonnummer</label>
+                   <input type="tel" class="form-control" id="phone" name="phone"
+                          placeholder="Telefon" required>
+
+                   <label for="message">Zusätzliche Nachricht</label>
+                   <textarea class="form-control" rows="5" id="message"
+                             name="message" placeholder="Nachricht"></textarea>
+
+                   <button type="submit" class="form-control" id="cf-submit"
+                           name="submit">Absenden
+                   </button>
+                 </div>
+               </div>
+             </form>
+           </div>
+
          </div>
+       </div>
      </section>
 
      </body>
      </html>
+
 
 
      <!-- GOOGLE MAP -->
