@@ -380,19 +380,25 @@ http://www.hanascare.de
            color: white;
            font-weight: bold;
          }
+
+         .thank-you {
+           display: none;
+           font-size: 20px;
+           color: green;
+           text-align: center;
+           margin-top: 40px;
+         }
        </style>
 
        <script>
          // Set min date to today
          window.onload = function () {
            const today = new Date().toISOString().split('T')[0];
-           const dateInput = document.getElementById("date");
-           dateInput.setAttribute("min", today);
-
-           dateInput.addEventListener("change", updateTimeOptions);
+           document.getElementById("date").setAttribute("min", today);
+           document.getElementById("date").addEventListener("change", updateTimeOptions);
          };
 
-         // Disable past time slots if date is today
+         // Disable past times if selected date is today
          function updateTimeOptions() {
            const selectedDate = new Date(document.getElementById("date").value);
            const now = new Date();
@@ -403,9 +409,7 @@ http://www.hanascare.de
              if (!option.value) return;
              const [hours, minutes] = option.value.split(":");
              const optionTime = new Date(selectedDate);
-             optionTime.setHours(parseInt(hours));
-             optionTime.setMinutes(parseInt(minutes));
-             optionTime.setSeconds(0);
+             optionTime.setHours(parseInt(hours), parseInt(minutes), 0);
 
              if (
                selectedDate.toDateString() === now.toDateString() &&
@@ -418,16 +422,33 @@ http://www.hanascare.de
            });
          }
 
-         // Show popup and delay submission
-         function showConfirmation(event) {
+         function updateCC() {
+           document.getElementById("cc-field").value = document.getElementById("email").value;
+         }
+
+         // Show thank you message after form is submitted
+         function showThankYou(event) {
            event.preventDefault();
 
-           alert("Vielen Dank für Ihre Anfrage! Wir melden uns in Kürze bei Ihnen.");
+           const form = event.target;
+           const formData = new FormData(form);
 
-           // Wait 100ms to allow alert to close before submitting
-           setTimeout(() => {
-             event.target.submit();
-           }, 100);
+           fetch(form.action, {
+             method: form.method,
+             body: formData,
+             headers: {
+               'Accept': 'application/json'
+             }
+           }).then(response => {
+             if (response.ok) {
+               form.style.display = "none";
+               document.getElementById("thank-you").style.display = "block";
+             } else {
+               alert("Fehler beim Senden der Nachricht. Bitte versuchen Sie es erneut.");
+             }
+           }).catch(error => {
+             alert("Verbindungsfehler. Bitte versuchen Sie es erneut.");
+           });
          }
        </script>
      </head>
@@ -441,7 +462,7 @@ http://www.hanascare.de
              <form id="appointment-form"
                    method="POST"
                    action="https://formsubmit.co/info@hanascare.de"
-                   onsubmit="showConfirmation(event)">
+                   onsubmit="showThankYou(event)">
 
                <!-- Hidden Formsubmit Fields -->
                <input type="hidden" name="_subject" value="Neue Beratungsanfrage">
@@ -464,7 +485,7 @@ http://www.hanascare.de
                  <div class="col-md-6 col-sm-6">
                    <label for="email">E-Mail</label>
                    <input type="email" class="form-control" id="email" name="email"
-                          placeholder="Ihre E-Mail" required>
+                          placeholder="Ihre E-Mail" required oninput="updateCC()">
                  </div>
 
                  <div class="col-md-6 col-sm-6">
@@ -502,21 +523,15 @@ http://www.hanascare.de
                  </div>
                </div>
              </form>
+
+             <div id="thank-you" class="thank-you">
+               <p>Vielen Dank für Ihre Anfrage! Wir melden uns in Kürze bei Ihnen.</p>
+             </div>
            </div>
 
          </div>
        </div>
      </section>
-
-     <script>
-       // Automatically copy sender email into hidden CC field for confirmation
-       const emailInput = document.getElementById('email');
-       const ccField = document.getElementById('cc-field');
-
-       emailInput.addEventListener('input', () => {
-         ccField.value = emailInput.value;
-       });
-     </script>
 
      </body>
      </html>
