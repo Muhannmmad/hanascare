@@ -354,8 +354,11 @@
          <meta charset="UTF-8">
          <title>Beratungstermin vereinbaren</title>
          <meta name="viewport" content="width=device-width, initial-scale=1">
+
+         <!-- Bootstrap for styling -->
          <link rel="stylesheet"
                href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
          <style>
              body {
                  background: #f5f5f5;
@@ -377,6 +380,22 @@
                  font-weight: bold;
              }
          </style>
+
+         <script>
+             // Set the minimum date to today
+             window.onload = function () {
+                 const today = new Date().toISOString().split('T')[0];
+                 document.getElementById("date").setAttribute("min", today);
+             };
+
+             // Confirm submission before sending
+             function confirmSubmission(event) {
+                 const confirmed = confirm("Möchten Sie den Termin wirklich absenden?");
+                 if (!confirmed) {
+                     event.preventDefault(); // Stop form from submitting
+                 }
+             }
+         </script>
      </head>
      <body>
 
@@ -385,14 +404,16 @@
              <div class="row">
 
                  <div class="col-md-6 col-sm-6">
-                     <form id="appointment-form" role="form" method="POST"
-                           action="https://formsubmit.co/hanascare@hotmail.com">
+                     <form id="appointment-form"
+                           role="form"
+                           method="POST"
+                           action="https://formsubmit.co/info@hanascare.de"
+                           onsubmit="confirmSubmission(event)">
 
                          <!-- Hidden Formsubmit Fields -->
                          <input type="hidden" name="_subject" value="Neue Beratungsanfrage">
                          <input type="hidden" name="_captcha" value="false">
-                         <input type="hidden" name="_next"
-                                value="https://hanascare.de/danke.html">
+                         <input type="hidden" name="_next" value="https://hanascare.de/danke.html">
 
                          <!-- Abschnittstitel -->
                          <div class="section-title">
@@ -415,7 +436,8 @@
 
                              <div class="col-md-6 col-sm-6">
                                  <label for="date">Datum wählen</label>
-                                 <input type="date" name="date" class="form-control" required>
+                                 <input type="date" id="date" name="date"
+                                        class="form-control" required>
                              </div>
 
                              <div class="col-md-6 col-sm-6">
@@ -434,7 +456,7 @@
                              </div>
 
                              <div class="col-md-12 col-sm-12">
-                                 <label for="telephone">Telefonnummer</label>
+                                 <label for="phone">Telefonnummer</label>
                                  <input type="tel" class="form-control" id="phone" name="phone"
                                         placeholder="Telefon" required>
 
